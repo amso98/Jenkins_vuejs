@@ -9,12 +9,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t amso98/vuejs:latest'
+        sh 'docker build -t vuejs:latest'
       }
     }
 
     stage('Archive') {
       steps {
+	sh 'docker tag vuejs:latest amso98/vuejs:lates'
         sh 'docker push amso98/vuejs:latest'
       }
     }
