@@ -1,23 +1,28 @@
+
 pipeline {
-    agent any
-    options {
-      buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
-    }
-    stages {
-      stage('Hello') {
-        steps {
-          echo "hello"
-        }
+  agent any
+
+  environment {
+    COMMIT_ID = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'make build amso98/vuejs:latest'
       }
-      stage ('cat README') {
-        when {
-          branch "fix-*"
-        }
-        steps {
-          sh '''
-            cat README.md
-            '''
-        }
+    }
+
+    stage('Archive') {
+      steps {
+        sh 'docker push amso98/vuejs:latest'
+      }
+    }
+
+    stage('Cleanup') {
+      steps {
+        sh 'docker rmi amso98/vuejs:latest'
       }
     }
   }
+}   
