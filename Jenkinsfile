@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'make build amso98/vuejs:latest'
+        sh 'docker build -t amso98/vuejs:latest'
       }
     }
 
