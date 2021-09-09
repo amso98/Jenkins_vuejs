@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	sh 'cd vueJS'
+	sh 'cd vueJS && pwd ; ls '
         sh 'docker build -t vuejs:0.1 .'
       }
     }
