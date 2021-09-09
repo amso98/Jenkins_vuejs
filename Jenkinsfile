@@ -17,7 +17,7 @@ pipeline {
         sh 'docker tag amso98/vuejs:latest'
       }
     }
-    tage('Cleanup') {
+    stage('Cleanup') {
       steps {
         sh 'docker rmi amso98/vuejs:latest'
       }
