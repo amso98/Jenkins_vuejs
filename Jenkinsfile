@@ -15,14 +15,14 @@ pipeline {
 
     stage('Archive') {
       steps {
-	sh 'docker tag vuejs:latest amso98/vuejs:$COMMID_ID'
-        sh 'docker push amso98/vuejs:$COMMID_ID'
+	sh 'docker tag vuejs:latest amso98/vuejs:latest'
+        sh 'docker push amso98/vuejs:latest'
       }
     }
 
     stage('Cleanup') {
       steps {
-        sh 'docker rmi amso98/vuejs:$COMMID_ID'
+        sh 'docker rmi amso98/vuejs:latest'
       }
     }
   }
