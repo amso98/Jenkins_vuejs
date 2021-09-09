@@ -12,14 +12,6 @@ pipeline {
         sh 'cd vueJS; docker build -t vuejs:latest .'
       }
     }
-
-    stage('Archive') {
-      steps {
-	sh 'docker tag vuejs:latest amso98/vuejs:latest'
-        sh 'docker push amso98/vuejs:latest'
-      }
-    }
-
     stage('Cleanup') {
       steps {
         sh 'docker rmi amso98/vuejs:latest'
