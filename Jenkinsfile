@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t vuejs:latest -f ./$(pwd)/Dockerfile .'
+        sh 'docker build -t vuejs:latest -f vueJS/Dockerfile .'
       }
     }
 
