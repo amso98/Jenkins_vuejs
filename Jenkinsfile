@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Archive') {
       steps {
-        sh 'docker tag amso98/vuejs:latest'
+        sh 'docker tag vuejs:latest amso98/vuejs:latest'
       }
     }
     stage('Cleanup') {
