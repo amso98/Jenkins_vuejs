@@ -9,20 +9,20 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t vuejs:latest'
+        sh 'docker build -t vuejs:$COMMID_ID .'
       }
     }
 
     stage('Archive') {
       steps {
-	sh 'docker tag vuejs:latest amso98/vuejs:lates'
-        sh 'docker push amso98/vuejs:latest'
+	sh 'docker tag vuejs:latest amso98/vuejs:$COMMID_ID'
+        sh 'docker push amso98/vuejs:$COMMID_ID'
       }
     }
 
     stage('Cleanup') {
       steps {
-        sh 'docker rmi amso98/vuejs:latest'
+        sh 'docker rmi amso98/vuejs:$COMMID_ID'
       }
     }
   }
